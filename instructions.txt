@@ -1,0 +1,92 @@
+Ubuntu setup
+open 1_jdk -> open terminal and run -> sudo dpkg -i *.deb -> java -version
+open 2_Curl\Curl -> sudo dpkg -i *.deb -> curl --version
+open 3_Maven_And_Spring -> open terminal run-> nano ~/.bashrc -> Add below lines to the end of the file
+
+	note :- Add encironment variables correctly for -> SPRING_HOME, M2_HOME, MAVEN_HOME -> Add these correctly of your respective bin folders
+
+	export SPRING_HOME=/mnt/c/Users/sidda/Desktop/Resourses/Hello/spring-3.3.1
+	export PATH=$PATH:$SPRING_HOME/bin
+	export M2_HOME=/mnt/c/Users/sidda/Desktop/Resourses/Hello/maven/apache-maven-3.8.8
+	export MAVEN_HOME=/mnt/c/Users/sidda/Desktop/Resourses/Hello/maven/apache-maven-3.8.8
+	export PATH=${M2_HOME}/bin:${PATH}
+
+	Save and exit (ctrl + s and ctrl + x) -> source ~/.bashrc
+
+	verify installation run	-> mvn -version
+
+
+After installing Mysql and successfull setup run below querries
+	open Mysql command line client (or in powershell run -> mysql -u root -p) -> run the below querries
+
+	CREATE USER 'user'@'%' IDENTIFIED BY 'password';
+	GRANT ALL PRIVILEGES ON *.* TO 'user'@'%';
+	FLUSH PRIVILEGES;
+
+	CREATE DATABASE test_db;
+	USE test_db;
+	
+	-Verify by creating a table in database
+
+	CREATE TABLE messages (id INT AUTO_INCREMENT PRIMARY KEY, message VARCHAR(255) NOT NULL);
+	INSERT INTO messages (message) VALUES ('Hello, World!');
+	SELECT * FROM messages;
+
+Run IntelliJ IDEA Community Edition:
+Go to FinalResourses\IDE -> Open the bin folder:
+	cd idea-IC-*/bin
+	./idea.sh
+
+
+load project into intellij idea follow below procedure
+	go to "SpringDemoAPI\SpringDemoAPI\src\main\resources" -> open "application.properties" -> update database details
+
+	update ipaddress -> spring.datasource.url=jdbc:mysql://<Add_ipaddress_of_machine_where_mysql_is_installed>:3306/test_db
+	update username of database-> spring.datasource.username=user
+	update password of database -> spring.datasource.password=password
+
+
+Windows Setup
+Install python from ..\FinalResourses\Windows_Software
+Install requests package : ..\FinalResourses\Windows_Software\requests -> open powershell and run command -> pip install --no-index --find-links=. requests
+
+-----------------------------------------------------
+
+SPRING_DATASOURCE_URL=jdbc:mysql://172.18.80.1:3306/test_db SPRING_DATASOURCE_USERNAME=user SPRING_DATASOURCE_PASSWORD=password java -jar SpringDemoAPI-0.0.1-SNAPSHOT.jar
+
+
+spring.datasource.url=${SPRING_DATASOURCE_URL}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+
+$env:SPRING_DATASOURCE_URL="jdbc:mysql://mysql-container:3306/test_db"
+$env:SPRING_DATASOURCE_USERNAME="user"
+$env:SPRING_DATASOURCE_PASSWORD="password"
+mvn spring-boot:run
+
+echo $SPRING_DATASOURCE_URL
+echo $SPRING_DATASOURCE_USERNAME
+echo $SPRING_DATASOURCE_PASSWORD
+
+
+SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/test_db \
+SPRING_DATASOURCE_USERNAME=user \
+SPRING_DATASOURCE_PASSWORD=password \
+mvn spring-boot:run -X
+----------------------------------------------------
+
+
+
+to run build file -  java -jar /path/to/your/application.jar
+
+export SPRING_HOME=/home/yourusername/Resources/Hello/spring-3.3.1
+export PATH=$SPRING_HOME/bin:$PATHexport SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/test_db
+export SPRING_DATASOURCE_USERNAME=user
+export SPRING_DATASOURCE_PASSWORD=password
+
+
