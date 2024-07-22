@@ -24,5 +24,6 @@ $ docker save -o spring-boot-docker-1.0.tar siddarthinme/my-repo:spring-boot-doc
 $ docker save -o mysql.tar mysql
 
 To load tar file as docker image: 
-docker load -i /path/to/input.tar
-example: docker load -i spring-boot-docker-1.0.tar
+$ docker load -i /path/to/input.tar
+  example: docker load -i spring-boot-docker-1.0.tar
+           docker load -i mysql.tar
