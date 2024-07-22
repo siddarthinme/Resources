@@ -142,3 +142,64 @@ Here are some of the basic Docker commands that are commonly used:
     ```
 
 These commands cover the basic operations for managing Docker images, containers, volumes, and networks. Docker Compose commands are included for managing multi-container Docker applications.
+
+
+Sure! Here's an explanation of each command, without changing the commands themselves.
+
+### Command 1:
+```sh
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test_db -e MYSQL_PASSWORD=password -p 3306:3306 -d <MySQL_ID>
+```
+
+**Explanation:**
+- `docker run`: Run a new Docker container.
+- `--name mysql-container`: Name the container `mysql-container`.
+- `-e MYSQL_ROOT_PASSWORD=password`: Set the root password for MySQL to `password`.
+- `-e MYSQL_DATABASE=test_db`: Create a database named `test_db`.
+- `-e MYSQL_PASSWORD=password`: Set the MySQL password for the root user to `password`.
+- `-p 3306:3306`: Map port 3306 on the host to port 3306 on the container.
+- `-d <MySQL_ID>`: Run the container in detached mode using the image with ID `<MySQL_ID>`.
+
+### Command 2:
+```sh
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=test_db -e MYSQL_PASSWORD=password -p 3306:3306 -d mysql:latest
+```
+
+**Explanation:**
+- `docker run`: Run a new Docker container.
+- `--name mysql-container`: Name the container `mysql-container`.
+- `-e MYSQL_ROOT_PASSWORD=password`: Set the root password for MySQL to `password`.
+- `-e MYSQL_DATABASE=test_db`: Create a database named `test_db`.
+- `-e MYSQL_PASSWORD=password`: Set the MySQL password for the root user to `password`.
+- `-p 3306:3306`: Map port 3306 on the host to port 3306 on the container.
+- `-d mysql:latest`: Run the container in detached mode using the `mysql:latest` image.
+
+### Command 3:
+```sh
+docker run --name spring-boot-docker --link <MYSQL_Container_ID> -p 8081:8080 -e SPRING_DATASOURCE_URL=jdbc:mysql://<MYSQL_Container_ID>:3306/test_db -e SPRING_DATASOURCE_USERNAME=root -e SPRING_DATASOURCE_PASSWORD=password -d <Spring_Image_ID>
+```
+
+**Explanation:**
+- `docker run`: Run a new Docker container.
+- `--name spring-boot-docker`: Name the container `spring-boot-docker`.
+- `--link <MYSQL_Container_ID>`: Link this container to the MySQL container with ID `<MYSQL_Container_ID>`.
+- `-p 8081:8080`: Map port 8081 on the host to port 8080 on the container.
+- `-e SPRING_DATASOURCE_URL=jdbc:mysql://<MYSQL_Container_ID>:3306/test_db`: Set the environment variable `SPRING_DATASOURCE_URL` to the JDBC URL of the MySQL database.
+- `-e SPRING_DATASOURCE_USERNAME=root`: Set the environment variable `SPRING_DATASOURCE_USERNAME` to `root`.
+- `-e SPRING_DATASOURCE_PASSWORD=password`: Set the environment variable `SPRING_DATASOURCE_PASSWORD` to `password`.
+- `-d <Spring_Image_ID>`: Run the container in detached mode using the image with ID `<Spring_Image_ID>`.
+
+### Command 4:
+```sh
+docker run --name spring-boot-docker --link 752cf42e611c -p 8081:8080 -e SPRING_DATASOURCE_URL=jdbc:mysql://752cf42e611c:3306/test_db -e SPRING_DATASOURCE_USERNAME=root -e SPRING_DATASOURCE_PASSWORD=password -d 609619ce6d75
+```
+
+**Explanation:**
+- `docker run`: Run a new Docker container.
+- `--name spring-boot-docker`: Name the container `spring-boot-docker`.
+- `--link 752cf42e611c`: Link this container to the MySQL container with ID `752cf42e611c`.
+- `-p 8081:8080`: Map port 8081 on the host to port 8080 on the container.
+- `-e SPRING_DATASOURCE_URL=jdbc:mysql://752cf42e611c:3306/test_db`: Set the environment variable `SPRING_DATASOURCE_URL` to the JDBC URL of the MySQL database.
+- `-e SPRING_DATASOURCE_USERNAME=root`: Set the environment variable `SPRING_DATASOURCE_USERNAME` to `root`.
+- `-e SPRING_DATASOURCE_PASSWORD=password`: Set the environment variable `SPRING_DATASOURCE_PASSWORD` to `password`.
+- `-d 609619ce6d75`: Run the container in detached mode using the image with ID `609619ce6d75`.
