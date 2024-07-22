@@ -20,7 +20,8 @@ export SPRING_DATASOURCE_PASSWORD=password
 spring app deployment:- docker run -it --name spring-boot-docker --link mysql-container:mysql-container -p 8081:8080 -e SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/test_db -e SPRING_DATASOURCE_USERNAME=root -e SPRING_DATASOURCE_PASSWORD=password -d spring-boot-docker
 
 To save docker images as tar file: 
-$docker save -o spring-boot-docker-1.0.tar siddarthinme/my-repo:spring-boot-docker-1.0
+$ docker save -o spring-boot-docker-1.0.tar siddarthinme/my-repo:spring-boot-docker-1.0
+$ docker save -o mysql.tar mysql
 
 To load tar file as docker image: 
 docker load -i /path/to/input.tar
